@@ -1,33 +1,78 @@
 const dino = document.querySelector('.dino');
+const background  = document.querySelector('.bg1');
+let isJump = false;
+
 function keypressed(event){
     if (event.keyCode === 32){
         console.log('espaço precionado');
-        jump();
+        if (!isJump){
+            jump();
+        }
     }
 }
 
 function jump(){
+    
     let position = 80;
+    isJump = true; // verifica se o pulo aconteceu
+
     let upInterval = setInterval(()=>{
         //codigo roda em loop a cada 20ms
-        position += 20; 
         if(position >=180){
-            clearInterval(upInterval);
+            clearInterval(upInterval); // limpa elemento ao atingir o position passado no if
             // decendo
             let downInterval = setInterval(()=>{
                 if(position <= 80){
                     clearInterval(downInterval);
-                }
+                    isJump = false;
+                }else {
                 position -= 20;
                 dino.style.bottom = position + 'px';
-            }, 20);   
+                }
+            }, 35);   
 
         }else{  
             //subindo
+            position += 20; 
             dino.style.bottom = position + 'px';
         }
-    }, 20);
+    }, 45);
 }
 
+// função cactus generated ------------------------------------------------------
+
+function genCactus(){
+    
+    const cactus = document.createElement('div'); // cria um elemento do tipo div
+    let cactusPosition = 1000; 
+    let radomTime = Math.random()*6000; // gera um valor de 0 a 1 e mult/valor
+
+    cactus.classList.add('cactus'); // adciona a classe html cactus
+    cactus.style.left = 1000 + 'px';
+    background.appendChild(cactus); // torna elemento passado no parametro filho da div bg1
+
+    //------cod.block para cactus se mover pra esquerda------------------------------------------------------
+
+    let leftInterval = setInterval(()=> { //arroweded , abstração do function
+
+        if(cactusPosition <= -150){
+            clearInterval(leftInterval); // limpa o elemento left interval
+            background.removeChild(cactus); //cactus fora da tela?, remove filho cactus da div bg1, + desempenho no processamento.
+       
+        }else if(cactusPosition > 0 && cactusPosition < 230){
+            //game over
+            clearInterval(leftInterval); //limpa a tela
+            document.body.innerHTML = '<h1 class = "game-over">FIM DE JOGO</h1>';
+
+        }else { // caso n saia da tela, continue se movimentando cactus.
+            cactusPosition -= 10; //chame a variavel cactus postion e decremente -10/20ms 
+            cactus.style.left = cactusPosition + 'px'; // mude a posição da div cactus de acordo com valor de cactusPsition
+        }
+    },20);
+    setTimeout(genCactus, radomTime); // usa valor da var randomTime e gera um genCactus, execulta função depois de certo tempo
+}
+
+genCactus();
+// precionou uma tecla ---------------------------------------------
 document.addEventListener('keyup', keypressed);
  
