@@ -1,6 +1,7 @@
 const dino = document.querySelector('.dino');
 const background  = document.querySelector('.bg1');
 let isJump = false;
+let position = 80;
 
 function keypressed(event){
     if (event.keyCode === 32){
@@ -13,12 +14,11 @@ function keypressed(event){
 
 function jump(){
     
-    let position = 80;
     isJump = true; // verifica se o pulo aconteceu
 
     let upInterval = setInterval(()=>{
         //codigo roda em loop a cada 20ms
-        if(position >=180){
+        if(position >=230){
             clearInterval(upInterval); // limpa elemento ao atingir o position passado no if
             // decendo
             let downInterval = setInterval(()=>{
@@ -56,16 +56,16 @@ function genCactus(){
     let leftInterval = setInterval(()=> { //arroweded , abstração do function
 
         if(cactusPosition <= -150){
-            clearInterval(leftInterval); // limpa o elemento left interval
+            clearInterval(leftInterval); // limpa o elemento leftInterval
             background.removeChild(cactus); //cactus fora da tela?, remove filho cactus da div bg1, + desempenho no processamento.
        
-        }else if(cactusPosition > 0 && cactusPosition < 230){
+        }else if(cactusPosition > 0 && cactusPosition < 230 && position < 90){
             //game over
             clearInterval(leftInterval); //limpa a tela
             document.body.innerHTML = '<h1 class = "game-over">FIM DE JOGO</h1>';
 
         }else { // caso n saia da tela, continue se movimentando cactus.
-            cactusPosition -= 10; //chame a variavel cactus postion e decremente -10/20ms 
+            cactusPosition -= 10; 
             cactus.style.left = cactusPosition + 'px'; // mude a posição da div cactus de acordo com valor de cactusPsition
         }
     },20);
