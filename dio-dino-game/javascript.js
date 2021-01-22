@@ -29,14 +29,14 @@ function jump(){
                 position -= 20;
                 dino.style.bottom = position + 'px';
                 }
-            }, 35);   
+            }, 25);   
 
         }else{  
             //subindo
             position += 20; 
             dino.style.bottom = position + 'px';
         }
-    }, 45);
+    }, 35);
 }
 
 // função cactus generated ------------------------------------------------------
@@ -44,28 +44,31 @@ function jump(){
 function genCactus(){
     
     const cactus = document.createElement('div'); // cria um elemento do tipo div
+
     let cactusPosition = 1000; 
     let radomTime = Math.random()*6000; // gera um valor de 0 a 1 e mult/valor
 
     cactus.classList.add('cactus'); // adciona a classe html cactus
+  
+
     cactus.style.left = 1000 + 'px';
     background.appendChild(cactus); // torna elemento passado no parametro filho da div bg1
-
+  
     //------cod.block para cactus se mover pra esquerda------------------------------------------------------
 
-    let leftInterval = setInterval(()=> { //arroweded , abstração do function
+    let leftInterval = setInterval(()=> {
 
         if(cactusPosition <= -150){
             clearInterval(leftInterval); // limpa o elemento leftInterval
             background.removeChild(cactus); //cactus fora da tela?, remove filho cactus da div bg1, + desempenho no processamento.
        
-        }else if(cactusPosition > 0 && cactusPosition < 230 && position < 90){
+        }else if(cactusPosition > 0 && cactusPosition < 180 && position < 100){
             //game over
             clearInterval(leftInterval); //limpa a tela
             document.body.innerHTML = '<h1 class = "game-over">FIM DE JOGO</h1>';
 
         }else { // caso n saia da tela, continue se movimentando cactus.
-            cactusPosition -= 10; 
+            cactusPosition -= 15; 
             cactus.style.left = cactusPosition + 'px'; // mude a posição da div cactus de acordo com valor de cactusPsition
         }
     },20);
