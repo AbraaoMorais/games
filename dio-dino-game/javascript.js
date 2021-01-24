@@ -1,9 +1,15 @@
+
+// aula-curso-dio : Recriado o jogo do dino do chrome
+//tutor: Celso
+//Implementação: Abraão Morais 
+
 const dino = document.querySelector('.dino');
 const background  = document.querySelector('.bg1');
 let isJump = false;
 let position = 80;
 let dinoVivo = true;  // dino ta vivo?
 var audio = new Audio('aud/inGame.mp3');
+var audioJump = new Audio('aud/jump.mp3');
 
 //document.getElementById('inGameAudio').autoplay = true;
 //document.getElementById('inGameAudio').muted = true;
@@ -13,24 +19,30 @@ window.onload = function(){
         audio.play()
 }
 
-function startPlay(){
+function startPlay(){  // recarrega pagina ao aperta play
     window.location.reload();
     
 }
-//-------------------------------------------------------------
+
+function stopJumpAudio(){ //função zerar audio
+    audioJump.pause();
+    audioJump.currentTime = 0;
+}
+//-------------------------------------------------------------   AUDIO DO PULO AINDA REPRODUZ DEPOIS DE MORTO
 
 function keypressed(event){
     if (event.keyCode === 32){
+    
         
         console.log('espaço precionado');
         if (!isJump){
-            jump();
+            jump();    
         }
     }
 }
 
 function jump(){
-   
+    audioJump.play();
 
     isJump = true; // verifica se o pulo aconteceu
     divoVivo = true;
@@ -38,11 +50,13 @@ function jump(){
         //codigo roda em loop a cada 20ms
         if(position >=230){
             clearInterval(upInterval); // limpa elemento ao atingir o position passado no if
+          
             // decendo
             let downInterval = setInterval(()=>{
                 if(position <= 80){
                     clearInterval(downInterval);
                     isJump = false;
+                    stopJumpAudio();// chama essa função pra zerar o audio
                 }else {
                 position -= 20;
                 dino.style.bottom = position + 'px';
@@ -93,7 +107,7 @@ function genCactus(){
             cactus.style.left = cactusPosition + 'px'; // mude a posição da div cactus de acordo com valor de cactusPsition
         }
     },20);
-    setTimeout(genCactus, radomTime); // usa valor da var randomTime e gera um genCactus, execulta função depois de certo tempo
+    setTimeout(genCactus, radomTime);
 }
 
 genCactus();
