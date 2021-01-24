@@ -1,7 +1,4 @@
 
-#body{
-
-}
 .dino{
     width: 250px;
     height: 150px;
@@ -53,4 +50,42 @@
     animation: deslisaDireita 600s infinite linear;
     
 
+}
+
+.game-over{
+    text-align: center;
+}
+
+.botaoPlay{
+    position: absolute;
+    width: 15%;
+    height: 8%;
+    margin-left: 44%;
+    margin-top: 15%;
+    padding: 10px;
+    border-color: sandybrown;
+    border-radius: 115px;
+    color: rgb(189, 255, 183);
+    background-color: rgb(0, 145, 7);
+}
+
+.botaoPlay:hover{
+    background-color: rgb(0, 184, 40);
+}
+
+.botaoCredit{
+    position: absolute;
+    width: 15%;
+    height: 8%;
+    margin-left: 44%;
+    margin-top: 20%;
+    padding: 10px;
+    border-color: sandybrown;
+    border-radius: 115px;
+    color: rgb(189, 255, 183);
+    background-color: rgb(0, 145, 7);
+}
+
+.botaoCredit:hover{
+    background-color: rgb(0, 184, 40);
 }

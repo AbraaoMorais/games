@@ -2,9 +2,26 @@ const dino = document.querySelector('.dino');
 const background  = document.querySelector('.bg1');
 let isJump = false;
 let position = 80;
+let dinoVivo = true;  // dino ta vivo?
+var audio = new Audio('aud/inGame.mp3');
+
+//document.getElementById('inGameAudio').autoplay = true;
+//document.getElementById('inGameAudio').muted = true;
+//document.getElementById('inGameAudio').play();
+
+window.onload = function(){    
+        audio.play()
+}
+
+function startPlay(){
+    window.location.reload();
+    
+}
+//-------------------------------------------------------------
 
 function keypressed(event){
     if (event.keyCode === 32){
+        
         console.log('espaço precionado');
         if (!isJump){
             jump();
@@ -13,9 +30,10 @@ function keypressed(event){
 }
 
 function jump(){
-    
-    isJump = true; // verifica se o pulo aconteceu
+   
 
+    isJump = true; // verifica se o pulo aconteceu
+    divoVivo = true;
     let upInterval = setInterval(()=>{
         //codigo roda em loop a cada 20ms
         if(position >=230){
@@ -59,13 +77,16 @@ function genCactus(){
     let leftInterval = setInterval(()=> {
 
         if(cactusPosition <= -150){
-            clearInterval(leftInterval); // limpa o elemento leftInterval
+            clearInterval(leftInterval); 
             background.removeChild(cactus); //cactus fora da tela?, remove filho cactus da div bg1, + desempenho no processamento.
-       
         }else if(cactusPosition > 0 && cactusPosition < 180 && position < 100){
-            //game over
+            //GAME OVER  ----------------------------------------------------------------------------------------
             clearInterval(leftInterval); //limpa a tela
-            document.body.innerHTML = '<h1 class = "game-over">FIM DE JOGO</h1>';
+            document.body.innerHTML = '<h1 id="gameOver" class = "game-over">FIM DE JOGO</h1>    <button type = "button"  id="start" class = "botaoPlay" onclick="startPlay();">PLAY</button>   <button type = "button" class = "botaoCredit" onclick="startPlay">CREDITS</button>';
+        
+            dinoVivo = false; // dinoVivo morreu.
+            console.log(dinoVivo);
+            audio.pause();
 
         }else { // caso n saia da tela, continue se movimentando cactus.
             cactusPosition -= 15; 
@@ -77,5 +98,8 @@ function genCactus(){
 
 genCactus();
 // precionou uma tecla ---------------------------------------------
-document.addEventListener('keyup', keypressed);
+document.addEventListener('keydown', keypressed);
+
  
+//------------ invocar audio -----------
+
