@@ -96,7 +96,7 @@ function genCactus(){
         }else if(cactusPosition > 0 && cactusPosition < 180 && position < 100){
             //GAME OVER  ----------------------------------------------------------------------------------------
             clearInterval(leftInterval); //limpa a tela
-            document.body.innerHTML = '<h1 id="gameOver" class = "game-over">FIM DE JOGO</h1>    <button type = "button"  id="start" class = "botaoPlay" onclick="startPlay();">PLAY</button>   <button type = "button" class = "botaoCredit" onclick="startPlay">CREDITS</button>';
+            document.body.innerHTML = '<img src="img/gameoverScreen.png" class = "bgGO">    <button type = "button"  id="start" class = "botaoPlay" onclick="startPlay();">PLAY AGAIN</button>   <button type = "button" class = "botaoCredit" onclick="startPlay">CREDITS</button>';
         
             dinoVivo = false; // dinoVivo morreu.
             console.log(dinoVivo);
