@@ -29,7 +29,7 @@
     height: 150px;
     bottom: 80px;
     /*background-color: coral;  descoment for debbug*/
-    background-image: url(cactus.gif);
+    background-image: url(img/cactus.gif);
     background-size: 70px;
     background-position: center;
     background-repeat: no-repeat;
@@ -54,7 +54,7 @@
     position: absolute;
     top: 30%;
     left: 0%;
-    background-image: url(bg1.png);
+    background-image: url(img/bg1.png);
     background-repeat: repeat-x;
     background-size: 900px;
     background-position: bottom;
