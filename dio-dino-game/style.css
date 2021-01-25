@@ -70,7 +70,8 @@
 }
 
 .botaoPlay{
-   position: absolute;
+    outline-style: none;
+    position: absolute;
     top: 35%;
     left: 49%;
     width: 20%;
@@ -88,6 +89,7 @@
 }
 
 .botaoCredit{
+    outline-style: none;
     position: absolute;
     top: 44%;
     left: 49%;

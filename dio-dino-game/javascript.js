@@ -10,6 +10,7 @@ let position = 80;
 let dinoVivo = true;  // dino ta vivo?
 var audio = new Audio('aud/inGame.mp3');
 var audioJump = new Audio('aud/jump.mp3');
+var audioGameOver = new Audio ('aud/gameOver.mp3');
 
 //document.getElementById('inGameAudio').autoplay = true;
 //document.getElementById('inGameAudio').muted = true;
@@ -101,6 +102,8 @@ function genCactus(){
             dinoVivo = false; // dinoVivo morreu.
             console.log(dinoVivo);
             audio.pause();
+            audioGameOver.play();
+            
 
         }else { // caso n saia da tela, continue se movimentando cactus.
             cactusPosition -= 15; 
