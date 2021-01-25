@@ -23,6 +23,8 @@ This project is based on the class recreating the famous crhome dinosaur game, p
 | ------ | ------ |
 | SPACEBAR | Dino jump |
 
+### TEST DEMO GAMEPLAY
+- https://abraaomorais.github.io/games/dio-dino-game
 ###### ATTENTION!:
     BUGS IN THIS VERSION(1.0) MAY HAPPEN DURING THE GAME
 
